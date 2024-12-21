@@ -140,24 +140,18 @@ let posts = [
 ];
 
 app.get('/posts', (req, res) => {
-    const page = parseInt(req.query.page) || 1;
-    const pageSize = 4;
-    const startIndex = (page - 1) * pageSize;
-    const endIndex = page * pageSize;
-
-    const paginatedPosts = posts.slice(startIndex, endIndex);
-
-    res.json(paginatedPosts);
+    res.json(posts);
 });
 
 app.get('/posts/:id', (req, res) => {
     const postId = parseInt(req.params.id);
-    const post = posts.find((p) => p.id === postId);
-    if (!post) {
-        return res.status(404).json({ message: 'Bài viết không tồn tại' });
+    const post = posts.find(post => post.id === postId);
+    if (post) {
+      res.json(post);
+    } else {
+      res.status(404).json({ message: "Post not found" });
     }
-    res.json(post);
-});
+  });
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
