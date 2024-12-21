@@ -81,10 +81,7 @@
                 this.posts = [...this.allPosts];
             } else {
                 this.posts = this.allPosts.filter(post => 
-                post.title.toLowerCase().includes(this.type.toLowerCase()) ||
-                post.excerpt.toLowerCase().includes(this.type.toLowerCase()) ||
-                post.author.toLowerCase().includes(this.type.toLowerCase()) ||
-                post.category.toLowerCase().includes(this.type.toLowerCase())
+                post.title.toLowerCase().includes(this.type.toLowerCase())
                 );
             }
         },
