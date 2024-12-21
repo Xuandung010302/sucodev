@@ -1,11 +1,13 @@
 <template>
   <div class="max-w-custom max-h-[50px] my-[50px] mx-auto">
-    <div class="flex justify-between items-center">
+    <div class="lg:flex justify-between items-center">
       <!-- Logo -->
-      <router-link to="/">
-        <img src="@/components/icons/Logo-Footer.svg" alt="Home" class="w-[99px]" />
-      </router-link>
-      <div class="flex ml-[399px] mr-[289px]">
+       <div class="flex justify-center items-center mb-5">
+        <router-link to="/">
+          <img src="@/components/icons/Logo-Footer.svg" alt="Home" class="w-[99px]" />
+        </router-link>
+      </div>
+      <div class="lg:ml-[399px] lg:mr-[289px] flex justify-center items-center mb-5">
         <a href="https://Vk.com/Braham" target="_blank">
           <img src="@/components/icons/Vk.svg" alt="Vk" class="size-5" />
         </a>
@@ -23,7 +25,7 @@
         </a>
       </div>
       <!-- Cập nhật năm tự động -->
-      <div class="text-txtGr">
+      <div class="text-txtGr text-center mb-5">
         All Rights Reserved {{ currentYear }} 3layers
       </div>
     </div>
