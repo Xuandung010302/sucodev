@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-custom-bg">
-    <div class="h-auto max-w-custom mx-auto flex">
-      <div class="mt-[43px] h-screen w-2/3">
+  <div class="bg-custom-bg mx-5 lg:mx-0">
+    <div class="h-auto max-w-custom mx-auto lg:flex">
+      <div class="mt-[43px] h-screen lg:w-2/3">
         <div class="mt-10 text-2xl font-semibold font-inter text-txtCreatePage">
           Create Post
         </div>
@@ -41,17 +41,17 @@
           class="mt-2 w-full pl-4 border border-gray-300 rounded-lg h-[101px]"
           placeholder="Excerpt..."
         />
-        <div class="justify-end flex">
+        <div class="justify-end flex ">
           <button @click="createPost" class="mt-4 p-2 bg-[#9283E0] text-white rounded-[10px] text-sm font-semibold w-[128px] h-10 ">
             Create Post
           </button>
         </div>
       </div>
-      <div class="bg-white mt-10 ml-4 w-[378px] h-[519px]">
+      <div class="bg-white mt-10 lg:ml-4 w-[378px] h-[519px] mx-auto">
         <div class="flex justify-center text-lg font-semibold mt-[32px]">
           RECENT POST
         </div>
-        <div class="xl:w-[336px] ml-[31px] mt-[47px]">
+        <div class="lg:w-[336px] ml-[31px] mt-[47px]">
           <div class="text-txtGr">DESIGN PROCESS</div>
           <div class="font-semibold">Our 15 favorite websites from August</div>
           <div class="text-txtGr">INSPIRATION</div>
