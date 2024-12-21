@@ -2,7 +2,13 @@
     <div class="bg-custom-bg h-100vh mx-auto">
         <div class="max-w-custom mx-auto pt-[37px]">
             <div class="max-w-custom bg-white mx-auto xl:h-[83px] flex items-center justify-start">
-                <span class="ml-11 text-txtGr text-lg leading-[50px]">Type something…</span>
+                <input 
+                v-model="type" 
+                @input="searchPosts"
+                type="text" 
+                class="pl-11 w-full border-gray-300 rounded-lg xl:h-[83px]"
+                placeholder="Type Something..."
+                />
                 <img src="@/components/icons/Icon.svg" alt="Search" class="h-6 w-auto ml-auto mr-6" />
             </div>
             <div class="mt-10 mb-[16.8px] text-txtGr text-xs">
@@ -10,7 +16,7 @@
             </div>
             <div v-if="posts.length" class="grid grid-cols-2 gap-10">
                 <div v-for="(post, index) in posts" :key="index">
-                    <img :src="`http://localhost:3000/backend/images/${post.image}`" alt="Post Image" class="mr-6 transform transition-transform duration-300 hover:scale-105 rounded-lg cursor-pointer">
+                    <img :src="`http://localhost:3000/backend/images/${post.image}`" alt="Post Image" class="w-[537px] h-[358px] mr-6 transform transition-transform duration-300 hover:scale-105 rounded-lg cursor-pointer">
                     <div class="flex mt-5">
                         <span class="text-txtGr">BY</span>&nbsp;&nbsp;{{ post.author }}&nbsp;&nbsp;<span class="text-txtGr">IN</span>&nbsp;&nbsp;{{ post.category }}
                     </div>
@@ -43,19 +49,22 @@
     export default {
         name: "HomePage",
         data() {
-        return {
-            posts: [],
-            currentPage: 1,
-        };
+            return {
+                posts: [],
+                currentPage: 1,
+                type: "",
+                allPosts: [],
+            };
         },
         created() {
-        this.fetchPosts();
+            this.fetchPosts();
         },
         methods: {
         async fetchPosts() {
             try {
             const response = await axios.get(`http://localhost:3000/posts?page=${this.currentPage}`);
             this.posts = [...this.posts, ...response.data];
+            this.allPosts = [...this.allPosts, ...response.data];
             } catch (error) {
             console.error("Error fetching posts:", error);
             }
@@ -64,7 +73,19 @@
             this.currentPage++;
             this.fetchPosts();
         },
+        searchPosts() {
+            if (this.type.trim() === "") {
+                this.posts = [...this.allPosts];
+            } else {
+                this.posts = this.allPosts.filter(post => 
+                post.title.toLowerCase().includes(this.type.toLowerCase()) ||
+                post.excerpt.toLowerCase().includes(this.type.toLowerCase()) ||
+                post.author.toLowerCase().includes(this.type.toLowerCase()) ||
+                post.category.toLowerCase().includes(this.type.toLowerCase())
+                );
+            }
         },
-    };
+    }
+};
 </script>
   
