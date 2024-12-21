@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const multer = require('multer');
 
 const app = express();
 const cors = require("cors");
@@ -9,7 +10,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/backend/images', express.static(path.join(__dirname, 'public/images')));
-
 let posts = [
     {
         id: 1,
@@ -18,7 +18,7 @@ let posts = [
         author: 'Tomas Laurinavicius',
         category: 'Design Process',
         excerpt: 'User research is the reality check every project needs. Here’s our guide to why you should be doing it — and how to get started.',
-        content: 'Full content of the article goes here...',
+        content: 'Full content ',
     },
     {
         id: 2,
@@ -27,7 +27,7 @@ let posts = [
         author: 'Tomas Laurinavicius',
         category: 'Design Process',
         excerpt: 'User research is the reality check every project needs. Here’s our guide to why you should be doing it — and how to get started.',
-        content: 'Full content of the article goes here...',
+        content: 'Full content ',
     },
     {
         id: 3,
@@ -36,7 +36,7 @@ let posts = [
         author: 'Tomas Laurinavicius',
         category: 'Design Process',
         excerpt: 'User research is the reality check every project needs. Here’s our guide to why you should be doing it — and how to get started.',
-        content: 'Full content of the article goes here...',
+        content: 'Full content ',
     },
     {
         id: 4,
@@ -45,7 +45,7 @@ let posts = [
         author: 'Tomas Laurinavicius',
         category: 'Design Process',
         excerpt: 'User research is the reality check every project needs. Here’s our guide to why you should be doing it — and how to get started.',
-        content: 'Full content of the article goes here...',
+        content: 'Full content ',
     },
     {
         id: 5,
@@ -54,7 +54,7 @@ let posts = [
         author: 'Tomas Laurinavicius',
         category: 'Design Process',
         excerpt: 'User research is the reality check every project needs. Here’s our guide to why you should be doing it — and how to get started.',
-        content: 'Full content of the article goes here...',
+        content: 'Full content ',
     },
     {
         id: 6,
@@ -63,7 +63,7 @@ let posts = [
         author: 'Tomas Laurinavicius',
         category: 'Design Process',
         excerpt: 'User research is the reality check every project needs. Here’s our guide to why you should be doing it — and how to get started.',
-        content: 'Full content of the article goes here...',
+        content: 'Full content ',
     },
     {
         id: 7,
@@ -72,7 +72,7 @@ let posts = [
         author: 'Tomas Laurinavicius',
         category: 'Design Process',
         excerpt: 'User research is the reality check every project needs. Here’s our guide to why you should be doing it — and how to get started.',
-        content: 'Full content of the article goes here...',
+        content: 'Full content ',
     },
     {
         id: 8,
@@ -81,7 +81,7 @@ let posts = [
         author: 'Tomas Laurinavicius',
         category: 'Design Process',
         excerpt: 'User research is the reality check every project needs. Here’s our guide to why you should be doing it — and how to get started.',
-        content: 'Full content of the article goes here...',
+        content: 'Full content ',
     },
     {
         id: 9,
@@ -90,7 +90,7 @@ let posts = [
         author: 'Tomas Laurinavicius',
         category: 'Design Process',
         excerpt: 'User research is the reality check every project needs. Here’s our guide to why you should be doing it — and how to get started.',
-        content: 'Full content of the article goes here...',
+        content: 'Full content ',
     },
     {
         id: 10,
@@ -99,7 +99,7 @@ let posts = [
         author: 'Tomas Laurinavicius',
         category: 'Design Process',
         excerpt: 'User research is the reality check every project needs. Here’s our guide to why you should be doing it — and how to get started.',
-        content: 'Full content of the article goes here...',
+        content: 'Full content ',
     },
     {
         id: 11,
@@ -108,7 +108,7 @@ let posts = [
         author: 'Tomas Laurinavicius',
         category: 'Design Process',
         excerpt: 'User research is the reality check every project needs. Here’s our guide to why you should be doing it — and how to get started.',
-        content: 'Full content of the article goes here...',
+        content: 'Full content ',
     },
     {
         id: 12,
@@ -117,7 +117,7 @@ let posts = [
         author: 'Tomas Laurinavicius',
         category: 'Design Process',
         excerpt: 'User research is the reality check every project needs. Here’s our guide to why you should be doing it — and how to get started.',
-        content: 'Full content of the article goes here...',
+        content: 'Full content ',
     },
     {
         id: 13,
@@ -126,7 +126,7 @@ let posts = [
         author: 'Tomas Laurinavicius',
         category: 'Design Process',
         excerpt: 'User research is the reality check every project needs. Here’s our guide to why you should be doing it — and how to get started.',
-        content: 'Full content of the article goes here...',
+        content: 'Full content ',
     },
     {
         id: 14,
@@ -135,7 +135,7 @@ let posts = [
         author: 'Tomas Laurinavicius',
         category: 'Design Process',
         excerpt: 'User research is the reality check every project needs. Here’s our guide to why you should be doing it — and how to get started.',
-        content: 'Full content of the article goes here...',
+        content: 'Full content ',
     },
 ];
 
@@ -159,11 +159,26 @@ app.get('/posts/:id', (req, res) => {
     res.json(post);
 });
 
-app.post('/posts', (req, res) => {
-    const { title, image, author, category, excerpt, content } = req.body;
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'public/images');
+    },
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + path.extname(file.originalname));
+    },
+  });
+  
+  const upload = multer({ storage: storage });
+  
+
+app.post('/posts', upload.single('image'), (req, res) => {
+    const { title, author, category, excerpt, content } = req.body;
+    const image = req.file ? req.file.filename : null;
+
     if (!title || !image || !author || !category || !excerpt || !content) {
         return res.status(400).json({ message: 'Tất cả các trường là bắt buộc' });
     }
+
     const newPost = {
         id: posts.length + 1,
         title,
