@@ -67,6 +67,8 @@
 </template>
 
 <script>
+import router from '@/assets/router';
+
 export default {
   name: "CreatePage",
   data() {
@@ -104,6 +106,7 @@ export default {
         const data = await response.json();
         if (response.ok) {
           alert('Tạo thành công bài đăng!');
+          router.push('/');
         } else {
           alert(data.message || 'Có lỗi xảy ra!');
         }

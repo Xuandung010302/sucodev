@@ -1,6 +1,16 @@
 <template>
     <div class="bg-custom-bg h-auto mx-auto p-8">
         <div class="max-w-custom mx-auto">
+            <div class="max-w-custom bg-white mx-auto h-[83px] flex items-center justify-start">
+                <input 
+                v-model="type" 
+                @input="searchPosts"
+                type="text" 
+                class="pl-11 w-full border-gray-300 rounded-lg h-[83px]"
+                placeholder="Type Something..."
+                />
+                <img src="@/components/icons/Icon.svg" alt="Search" class="h-6 w-auto ml-auto mr-6" />
+            </div>
             <div class="text-center">
                 <div class="mt-10 mb-[16.8px] text-txtGr text-xs text-center lg:text-start">
                     ALL POST
@@ -44,6 +54,7 @@
                 posts: [],
                 allPosts: [],
                 currentPage: 1,
+                type: "",
                 pageSize: 4,
             };
         },
@@ -53,11 +64,11 @@
         methods: {
             async fetchPosts() {
                 try {
-                const response = await axios.get(`http://localhost:3000/posts`);
-                this.allPosts = response.data;
-                this.loadPosts();
+                    const response = await axios.get(`http://localhost:3000/posts`);
+                    this.allPosts = response.data;
+                    this.loadPosts();
                 } catch (error) {
-                console.error("Error fetching posts:", error);
+                    console.error("Error fetching posts:", error);
                 }
             },
             loadPosts() {
@@ -70,6 +81,15 @@
             loadMorePosts() {
                 this.currentPage++;
                 this.loadPosts();
+            },
+            searchPosts() {
+                if (this.type.trim() === "") {
+                    this.posts = [...this.allPosts];
+                } else {
+                    this.posts = this.allPosts.filter(post => 
+                    post.title.toLowerCase().includes(this.type.toLowerCase())
+                    );
+                }
             },
         },
     };
