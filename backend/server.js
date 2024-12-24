@@ -151,7 +151,7 @@ app.get('/posts/:id', (req, res) => {
     } else {
       res.status(404).json({ message: "Post not found" });
     }
-  });
+});
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -160,9 +160,9 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
       cb(null, Date.now() + path.extname(file.originalname));
     },
-  });
+});
   
-  const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
   
 
 app.post('/posts', upload.single('image'), (req, res) => {

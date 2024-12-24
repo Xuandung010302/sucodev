@@ -20,13 +20,13 @@
                         <router-link to="/new" class="pl-[138px] font-semibold">New</router-link>
                     </li>
                     <li class="hover:text-pink-500 cursor-pointer my-auto">
-                        <router-link to="reading-list" class="pl-[75px] font-semibold whitespace-nowrap">Reading list</router-link>
+                        <router-link to="/reading-list" class="pl-[75px] font-semibold whitespace-nowrap">Reading list</router-link>
                     </li>
                     <li class="hover:text-pink-500 cursor-pointer my-auto">
-                        <router-link to="topics" class="pl-[76px] font-semibold">Topics</router-link>
+                        <router-link to="/topics" class="pl-[76px] font-semibold">Topics</router-link>
                     </li>
                     <li class="hover:text-pink-500 cursor-pointer my-auto">
-                        <router-link to="create">
+                        <router-link to="/create">
                             <button class="ml-[76px] w-[120px] h-[50px] bg-[#9283E0] text-white font-semibold rounded-md hover:bg-opacity-90 text-lg">
                                 Create
                             </button>
