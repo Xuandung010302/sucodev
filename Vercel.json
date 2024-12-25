@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
       {
-        "src": "blog/dist/**/index.html",
+        "src": "blog/dist/**/*",
         "use": "@vercel/static"
       },
       {
@@ -21,7 +21,7 @@
       },
       {
         "src": "/(.*)",
-        "dest": "/blog/index.html"
+        "dest": "/blog/dist/index.html"
       }
     ]
   }
