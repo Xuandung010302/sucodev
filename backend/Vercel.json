@@ -14,10 +14,6 @@
     {
       "src": "/backend/images/(.*)",
       "dest": "/public/images/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
     }
   ]
 }
