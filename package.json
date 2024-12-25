@@ -2,7 +2,7 @@
     "name": "sucodev",
     "version": "1.0.0",
     "scripts": {
-      "build": "npm run build --prefix blog",
+      "build": "npm run build",
       "start": "node backend/server.js"
     },
     "dependencies": {
