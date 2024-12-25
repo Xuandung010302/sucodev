@@ -22,7 +22,7 @@
                         </div>
                         <div class="display">
                             <img :src="`http://localhost:3000/backend/images/${post.image}`" alt="Post Image" class="w-full sm:w-[500px] md:w-[600px] lg:w-[900px] xl:w-[972px] h-auto sm:max-h-[500px] md:max-h-[520px] lg:max-h-[574px] rounded-lg"/>
-                            <p class="mt-[45px]">Author: {{ post.author }}</p>
+                            <span class="text-txtGr">BY</span>&nbsp;&nbsp;{{ post.author }}&nbsp;&nbsp;<span class="text-txtGr">IN</span>&nbsp;&nbsp;{{ post.category }}
                             <p class="mt-[45px] sm:w-[500px] md:w-[600px] lg:w-[900px] xl:w-[972px]">{{ post.excerpt }}</p>
                         </div>
                         <div class="display ml-11">

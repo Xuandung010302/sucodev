@@ -21,7 +21,7 @@
                 <div v-for="(post, index) in posts" :key="index" class="flex flex-col items-center lg:block lg:mx-0 mx-auto">
                     <router-link :to="`/posts/${post.id}`">
                         <img 
-                            :src="`http://localhost:3000/backend/images/${post.image}`" 
+                            :src="`https://sucodev-one.vercel.app/images/${post.image}`" 
                             alt="Post Image" 
                             class="w-full max-w-[90%] sm:w-[400px] md:w-[480px] lg:w-[537px] 
                                 h-auto max-h-[90%] sm:max-h-[300px] md:max-h-[320px] lg:max-h-[358px]
@@ -74,7 +74,7 @@
         methods: {
             async fetchPosts() {
                 try {
-                    const response = await axios.get(`http://localhost:3000/posts`);
+                    const response = await axios.get(`https://sucodev-nine.vercel.app/posts`);
                     this.allPosts = response.data;
                     this.loadPosts();
                 } catch (error) {
