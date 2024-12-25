@@ -8,6 +8,7 @@ const app = express();
 const cors = require("cors");
 
 app.use(cors());
+const cors = require('cors');
 app.use(bodyParser.json());
 
 app.use('/backend/images', express.static(path.join(__dirname, 'public/images')));
@@ -140,11 +141,11 @@ let posts = [
     },
 ];
 
-app.get('/posts', (req, res) => {
+app.get('/api/posts', (req, res) => {
     res.json(posts);
 });
 
-app.get('/posts/:id', (req, res) => {
+app.get('/api/posts/:id', (req, res) => {
     const postId = parseInt(req.params.id);
     const post = posts.find(post => post.id === postId);
     if (post) {
@@ -166,7 +167,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
   
 
-app.post('/posts', upload.single('image'), (req, res) => {
+app.post('/api/posts', upload.single('image'), (req, res) => {
     const { title, author, category, excerpt, content } = req.body;
     const image = req.file ? req.file.filename : null;
 
