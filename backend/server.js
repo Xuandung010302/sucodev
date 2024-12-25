@@ -1,14 +1,10 @@
 const express = require('express');
-
 const bodyParser = require('body-parser');
 const path = require('path');
 const multer = require('multer');
-
 const app = express();
 const cors = require("cors");
-
 app.use(cors());
-const cors = require('cors');
 app.use(bodyParser.json());
 
 app.use('/backend/images', express.static(path.join(__dirname, 'public/images')));
