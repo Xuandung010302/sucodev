@@ -1,15 +1,5 @@
 {
     "version": 2,
-    "builds": [
-      {
-        "src": "blog/dist/**/*",
-        "use": "@vercel/static"
-      },
-      {
-        "src": "backend/server.js",
-        "use": "@vercel/node"
-      }
-    ],
     "routes": [
       {
         "src": "/backend/images/(.*)",
@@ -21,7 +11,7 @@
       },
       {
         "src": "/(.*)",
-        "dest": "/blog/dist/index.html"
+        "dest": "/blog/index.html"
       }
     ]
   }
