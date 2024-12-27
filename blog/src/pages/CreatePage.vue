@@ -98,7 +98,7 @@ export default {
       }
 
       try {
-        const response = await fetch('http://localhost:3000/posts', {
+        const response = await fetch('https://sucodev-2.onrender.com/posts', {
           method: 'POST',
           body: formData,
         });
