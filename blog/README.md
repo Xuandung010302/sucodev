@@ -27,3 +27,5 @@ npm run dev
 ```sh
 npm run build
 ```
+FE: https://vercel.com/xuandung010302s-projects/sucodev-h3pk
+BE: https://dashboard.render.com/web/srv-ctndapdsvqrc73b0es00/deploys/dep-ctndapdsvqrc73b0es5g?r=2024-12-27%4016%3A26%3A18%7E2024-12-27%4016%3A29%3A27
