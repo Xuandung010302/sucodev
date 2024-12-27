@@ -9,11 +9,11 @@
   "routes": [
     {
       "src": "/posts",
-      "dest": "/server.js"
+      "dest": "/backend/server.js"
     },
     {
       "src": "/posts/:id",
-      "dest": "/server.js"
+      "dest": "/backend/server.js"
     },
     {
       "src": "/backend/images/(.*)",
@@ -21,7 +21,7 @@
     },
     {
       "src": "/.*",
-      "dest": "/server.js"
+      "dest": "/backend/server.js"
     }
   ]
 }
