@@ -74,7 +74,7 @@
         methods: {
             async fetchPosts() {
                 try {
-                    const response = await axios.get(`https://sucodev-seven.vercel.app/posts`);
+                    const response = await axios.get(`https://sucodev-seven.vercel.app/api/posts`);
                     this.allPosts = response.data;
                     this.loadPosts();
                 } catch (error) {
@@ -102,7 +102,7 @@
                 }
             },
             viewPost(postId) {
-                this.$router.push(`/posts/${postId}`);
+                this.$router.push(`/api/posts/${postId}`);
             },
         },
     };
