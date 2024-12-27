@@ -137,6 +137,10 @@ let posts = [
     },
 ];
 
+app.get("/", (req, res) => {
+    res.send("API is working!");
+  });
+  
 app.get('/posts', (req, res) => {
     res.json(posts);
 });
