@@ -1,10 +1,10 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const multer = require('multer');
 const app = express();
-const cors = require("cors");
+const cors = require('cors');
+
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -138,8 +138,8 @@ let posts = [
     },
 ];
 
-app.get("/", (req, res) => {
-    res.send("API is working!");
+app.get('/', (req, res) => {
+    res.send('API is working!');
 });
 
 app.get('/posts', (req, res) => {
@@ -150,30 +150,29 @@ app.get('/posts/:id', (req, res) => {
     const postId = parseInt(req.params.id);
     const post = posts.find(post => post.id === postId);
     if (post) {
-      res.json(post);
+        res.json(post);
     } else {
-      res.status(404).json({ message: "Post not found" });
+        res.status(404).json({ message: 'Post not found' });
     }
 });
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, 'public/images');
+        cb(null, 'public/images');
     },
     filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname));
+        cb(null, Date.now() + path.extname(file.originalname));
     },
 });
   
 const upload = multer({ storage: storage });
-  
 
 app.post('/posts', upload.single('image'), (req, res) => {
     const { title, author, category, excerpt, content } = req.body;
     const image = req.file ? req.file.filename : null;
 
     if (!title || !image || !author || !category || !excerpt || !content) {
-        return res.status(400).json({ message: 'Tất cả các trường là bắt buộc' });
+        return res.status(400).json({ message: 'All fields are required' });
     }
 
     const newPost = {
@@ -191,5 +190,5 @@ app.post('/posts', upload.single('image'), (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+    console.log(`Server is running at http://localhost:${PORT}`);
 });
