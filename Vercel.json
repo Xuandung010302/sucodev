@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "blog/dist/**/index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "backend/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/backend/images/(.*)",
+      "dest": "/public/images/$1"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/blog/index.html"
+    }
+  ]
+}
