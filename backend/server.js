@@ -1,3 +1,4 @@
+module.exports = app;
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -140,7 +141,7 @@ let posts = [
 app.get("/", (req, res) => {
     res.send("API is working!");
   });
-  
+
 app.get('/posts', (req, res) => {
     res.json(posts);
 });

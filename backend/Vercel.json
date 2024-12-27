@@ -8,12 +8,12 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/server.js"
+      "src": "/backend/images/(.*)", 
+      "dest": "/public/images/$1"
     },
     {
-      "src": "/backend/images/(.*)",
-      "dest": "/public/images/$1"
+      "src": "/(.*)", 
+      "dest": "/server.js"
     }
   ]
 }
