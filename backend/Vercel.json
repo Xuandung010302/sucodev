@@ -8,20 +8,20 @@
   ],
   "routes": [
     {
-      "src": "/posts",
-      "dest": "/backend/server.js"
+      "src": "/backend/posts",
+      "dest": "/server.js"
     },
     {
-      "src": "/posts/:id",
-      "dest": "/backend/server.js"
+      "src": "/backend/posts/:id",
+      "dest": "/server.js"
     },
     {
       "src": "/backend/images/(.*)",
       "dest": "/public/images/$1"
     },
     {
-      "src": "/.*",
-      "dest": "/backend/server.js"
+      "src": "/backend/.*",
+      "dest": "/server.js"
     }
   ]
 }
