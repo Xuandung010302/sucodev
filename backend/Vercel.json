@@ -8,11 +8,11 @@
   ],
   "routes": [
     {
-      "src": "/backend/posts",
+      "src": "/posts",
       "dest": "/server.js"
     },
     {
-      "src": "/backend/posts/:id",
+      "src": "/posts/:id",
       "dest": "/server.js"
     },
     {
@@ -20,7 +20,7 @@
       "dest": "/public/images/$1"
     },
     {
-      "src": "/backend/.*",
+      "src": "/.*",
       "dest": "/server.js"
     }
   ]
