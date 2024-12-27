@@ -137,11 +137,11 @@ let posts = [
     },
 ];
 
-app.get('/api/posts', (req, res) => {
+app.get('/posts', (req, res) => {
     res.json(posts);
 });
 
-app.get('/api/posts/:id', (req, res) => {
+app.get('/posts/:id', (req, res) => {
     const postId = parseInt(req.params.id);
     const post = posts.find(post => post.id === postId);
     if (post) {
@@ -163,7 +163,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
   
 
-app.post('/api/posts', upload.single('image'), (req, res) => {
+app.post('/posts', upload.single('image'), (req, res) => {
     const { title, author, category, excerpt, content } = req.body;
     const image = req.file ? req.file.filename : null;
 
