@@ -68,7 +68,7 @@ export default {
         async fetchPost() {
             try {
                 const postId = this.$route.params.id;
-                const response = await axios.get(`https://sucodev-h3pk.vercel.app/posts/${postId}`);
+                const response = await axios.get(`https://sucodev-2.onrender.com/posts/${postId}`);
                 this.post = response.data;
             } catch (error) {
                 console.error("Error fetching post:", error);
